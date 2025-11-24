@@ -1,0 +1,27 @@
+MI INFORME BREVE:
+
+En este tp incluyo los metodos que hice en recursiva como iterativa.
+Defini una clase principal llamada Persona, que contiene los atributos básicos y los métodos comunes.
+A partir de ella creé las clases Estudiante, Profesor y Personal, que heredan sus características y a la vez agregan información propia dependiendo del rol.
+Las clases implementan la interfaz MiembroUniversidad, para establecer un comportamiento general y que todos los miembros se unifiquen dentro de la estructura.
+
+Aplicacion de Polimorfismo
+Lo utilice cuando manejo el arreglo de MiembroUniversidad. todos pueden ser tratados con el mismo gracias a que comparten la interfaz.
+cada subclase redefinio el metodo obtenerInformacionCompleta() con @override, por lo que recorre el arreglo e invoca ese  metodo, se ejecuta automaticamente a la version correspondiente al objeto real.
+
+Recursivos y Ordenamiento/Búsqueda:
+formas de calcular el promedio de estudiante:
+Metodo recursivo→ calcularPromedioRecursivo()
+Metodo Iterativo→ calcularPromedioIterativo()
+Recursivos son mas simple de leer mientras que el Iterativo es mas eficiente en tiempo y memoria.
+
+◘ Tambien implemente:
+•Ordenamiento por apellido para organizar estudiantes.
+•Busqueda binaria usando el apellido como clave.
+•Busqueda por documento, útil para encontrar miembros como Mario Pérez o verificar igualdad con la copia (Alejandro López).
+    ◘Ejemplo de uso en mi proyecto
+•Estudiantes cargados: Mario Pérez, Rocío Gómez, Ana Torres
+•Ordenamiento por apellido
+•Busqueda de “Gómez” mediante búsqueda binaria
+•Comparación entre estudiante y copia usando equals().
+

@@ -2,6 +2,7 @@ public class Profesor extends Persona implements MiembroUniversidad{
     String especialidad;
     ListaEnlazada materiasAsignadas;
     int añosExperiencia;
+    private Cola colaConsultas = new Cola();
 
     public Profesor(String nombre, String apellido, int edad,String documento, String especialidad, int añosExperiencia){
         super(nombre, apellido, edad, documento);
@@ -37,6 +38,31 @@ public class Profesor extends Persona implements MiembroUniversidad{
         
         this.materiasAsignadas.agregarPrimero(materia);
     } 
+
+    // Agrega estudiante a la cola de consultas
+    public void agregarEstudianteACola(TurnoConsulta turno) {
+        colaConsultas.insertar(turno);
+    }
+
+    // Atiende al primer estudiante que llegó
+    public TurnoConsulta atenderSiguienteEstudiante() {
+        return (TurnoConsulta) colaConsultas.quitar();
+    }
+
+    // Devuelve el próximo en cola sin quitarlo
+    public TurnoConsulta verSiguienteEnCola() {
+        return (TurnoConsulta) colaConsultas.verPrimero();
+    }
+
+    /*
+    insertar() ⇒ encola al final
+    quitar() ⇒ atiende al primero que llego
+    verPrimero() ⇒ mira quién sigue sin atender todavia
+    
+    
+    */
+
+
 
     @Override
     public String obtenerRol(){

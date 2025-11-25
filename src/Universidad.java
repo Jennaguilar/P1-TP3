@@ -50,29 +50,6 @@ public class Universidad {
         }
     }
 
-    public void listarEstudiantes(){
-        System.out.println("Estudiantes de la Universdiad: "+ nombre + " :");
-        for(int i = 0; i< cantidadMiembros; i++){
-            if(miembros[i] instanceof Estudiante){
-                System.out.println("- "+ miembros[i].obtenerInformacionCompleta());
-            }
-        }
-    }
-
-      public void buscarPorRol(String rolBuscado) {
-        System.out.println("Buscando miembros con el rol de: "+ rolBuscado);
-        
-        Nodo actual = miembros.getCabeza();
-        while(actual != null){
-            MiembroUniversidad mu = (MiembroUniversidad) actual.getDato();
-
-            if (mu.obtenerRol().equalsIgnoreCase(rolBuscado)){
-                System.out.println(mu.obtenerInformacionCompleta());
-            }
-            actual = actual.getSiguiente();
-        }
-    }
-
     public Estudiante buscarEstudianteRecursivo(Estudiante[] estudiantes, String documento, int indice){
         if(indice >= estudiantes.length){
             return null;

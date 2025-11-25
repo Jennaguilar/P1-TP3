@@ -2,20 +2,18 @@ public class Estudiante extends Persona implements MiembroUniversidad{
 String carrera;
 double promedio;
 private ListaEnlazada materias;
+private Pila tareasPendientes;
 
     public Estudiante(String nombre, String apellido, int edad, String documento, String carrera, double promedio, Materia materias []){
         super(nombre, apellido, edad, documento);    
         this.carrera = carrera;
         this.promedio = promedio;
-        if(materias == null){
-            this.materias = new ListaEnlazada();
-        } else {
-            this.materias = materias;
-        }
+        this.materias = new ListaEnlazada(); // siempre inicializa la lista
+        
     }
 
     public Estudiante(){
-
+        this.materias = new ListaEnlazada();
     }
 
     //Metodos Getters y Setters//
@@ -135,7 +133,30 @@ public double calcularPromedioIterativo() {
     // Finalmente devolvemos el promedio
     return suma / cantidad;
 }
+    // Agrega una nueva tarea a la pila
+    public void agregarTarea(Tarea tarea) {
+        tareasPendientes.push(tarea);
+    }
 
+    // Devuelve la próxima tarea SIN sacarla de la pila
+    public Tarea verProximaTarea() {
+        return (Tarea) tareasPendientes.peek();
+    }
+
+    // Retira la última tarea agregada (la de mayor prioridad temporal)
+    public Tarea completarUltimaTarea() {
+        return (Tarea) tareasPendientes.pop();
+    }
+
+    /*
+    
+    push() ⇒ agrega arriba de la pila
+
+    peek() ⇒ mira la próxima tarea pero no la elimina
+
+    pop() ⇒ completa y elimina la última tarea agregada
+        
+    */
 
 
 
@@ -143,11 +164,6 @@ public double calcularPromedioIterativo() {
     public String toString(){
         return super.toString() + "- Carrera:"+ carrera + "- Promedio: "+ promedio;
     }
-
-    @Override
-    public String descripcionRol() {
-        return "Soy un estudiante de la carrera " + carrera;
-}
 
     
 

@@ -114,4 +114,16 @@ public class ListaEnlazada {
         }
         
     }
+
+    // Quitar y devolver el primer elemento de la lista
+    public Object quitarPrimero() {
+    if (estaVacia()) {
+        return null;
+    }
+
+    Object dato = cabeza.getDato();
+    cabeza = cabeza.getSiguiente();
+    return dato;
+}
+
 }

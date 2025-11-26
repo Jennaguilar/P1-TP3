@@ -1,69 +1,109 @@
 TRABAJO PRACTICO N° 2 – PROGRAMACION I
 INFORME
 
-En este trabajo el proyecto q se desarrollo en el TP1 para reemplazar el uso de arreglos (arrays) por estructuras dinámicas, específicamente 
-listas enlazadas simples. 
-El objetivo principal fue aprender el funcionamiento de una lista enlazada, cómo se agrega, elimina y recorre, y cómo adaptar código ya existente para trabajar con nodos en lugar de índices.
-Se actualizaron las clases Estudiante, Profesor y Universidad para utilizar la clase ListaEnlazada como estructura base para almacenar sus colecciones.
+Incorpore el uso de Pilas y Colas a nuestro sistema educativo, utilizando Listas Enlazadas como estructura base.
+Además, se agregaron nuevas funcionalidades, entidades y métodos, junto con métodos recursivos aplicados a estas estructuras.
 
-IMPLEMENTACIÓN DE NODO Y LISTA ENLAZADA
-Se implementaron dos clases fundamentales:
+→Implementaciones Realizadas
+Pila (LIFO – Last In First Out)
+Implementada usando ListaEnlazada.
+Operaciones principales:
+push(), pop(), peek(), isEmpty(), size().
 
-Clase Nodo:
-• Contiene un campo dato de tipo Object.
-• Contiene un puntero siguiente que apunta al próximo nodo.
-• Representa un elemento dentro de la lista.
+Se usa en:
+Historial de Cambios de Notas
+Tareas Pendientes del Estudiante
 
-Clase ListaEnlazada:
-• Usa un atributo cabeza que referencia al primer nodo.
-• Métodos implementados: agregar, estaVacia, eliminar, existe, contarElementos, mostrarLista, getCabeza y los métodos de conversión entre lista y array.
-Esta clase reemplaza totalmente a los arrays usados en el TP1.
+✔️ Cola (FIFO – First In First Out)
+Implementada usando ListaEnlazada.
+Operaciones principales:
+insertar(), quitar(), verPrimero(), estaVacia(), size().
 
-
-ADAPTACIONES EN LAS CLASES DEL SISTEMA EDUCATIVO
-
-Clase Estudiante:
-• El atributo materias, que antes era un arreglo, fue reemplazado por una ListaEnlazada.
-• Se modificó el método de promedio recursivo para que trabaje con nodos en lugar de posiciones.
-• Se agregaron métodos para calcular suma recursiva, promedio recursivo y promedio iterativo recorriendo la lista nodo por nodo.
-
-Clase Profesor:
-• Las materias asignadas ahora se guardan en una ListaEnlazada.
-• Se modificaron los métodos de búsqueda y agregado.
-
-Clase Universidad:
-• Los miembros de la universidad ahora se almacenan en una ListaEnlazada.
-• Se adaptaron los métodos de inserción, búsqueda, recursión y las operaciones que antes dependían de arrays.
-• Para el ordenamiento o búsqueda binaria se permite convertir la lista a un arreglo temporal.
+Se usa en:
+Gestor de Inscripciones
+Turnos de Consulta con Profesores
 
 
-funcionamiento de los métodos principales
-agregar(dato): crea un nodo nuevo y lo coloca al final de la lista enlazada.
-eliminar(dato): recorre la lista y elimina el nodo cuyo contenido coincida con el dato buscado.
-buscar(dato): recorre nodo por nodo hasta encontrar uno con ese dato. Devuelve ese nodo o null.
-contarElementos(): recorre la lista sumando cada nodo. Devuelve el total.
-mostrarLista(): imprime uno por uno los datos almacenados en la lista.
 
 
-uso de la recursión
-La recursión se usa para sumar las calificaciones sin necesidad de usar un bucle.
-Cada llamada procesa un nodo y se llama a sí misma con el siguiente, hasta llegar a null.
-Esto permite calcular la suma total de manera elegante y simple.
+Nuevas Entidades
+→ CambioNota
+Guarda información de una modificación de nota:
+estudianteId
+materiaId
+notaAnterior
+notaNueva
+fecha
 
-Comparación Recursivo vs Iterativo
-Iterativo: usa un while, es más eficiente y no consume tanta memoria.
-Recursivo: es más corto y fácil de leer, pero puede consumir más pila si la lista es muy grande.
-Ambos hacen lo mismo: recorrer la lista y sumar valores.
+→ SolicitudInscripcion
+Representa una inscripción a una materia:
+estudiante
+materia
+fechaSolicitud
+estado (pendiente/aprobada/rechazada)
+
+→ Tarea
+Representa una tarea pendiente del estudiante:
+descripcion
+materia
+fechaLimite
+prioridad
+
+→ TurnoConsulta
+Turno para ver al profesor:
+estudiante
+motivo
+horaLlegada
+duracionEstimada
 
 
-promedio
-El promedio se obtiene dividiendo la suma total de calificaciones por la cantidad de materias.
-Se probó con varios datos y ambos métodos (iterativo y recursivo) dieron el mismo resultado.
+
+Funcionalidades Implementadas
+HistorialCambios (Pila)
+Permite registrar cambios con registrarCambio().
+Permite deshacer cambios con deshacerUltimoCambio().
+ Es útil porque el último cambio es el primero en revertirse (LIFO).
+
+GestorInscripciones (Cola)
+Los estudiantes se atienden en orden de llegada.
+
+Métodos:
+agregarSolicitud()
+verSiguienteSolicitud()
+procesarSiguienteSolicitud()
+Perfecto para un sistema donde se respeta el turno.
+
+TareasPendientes en Estudiante (Pila)
+agregarTarea()
+verProximaTarea()
+completarUltimaTarea()
+
+Turnos de Consulta en Profesor (Cola)
+agregarEstudianteACola()
+verSiguienteEnCola()
+atenderSiguienteEstudiante()
 
 
-Problemas al enlazar nodos → solucionado revisando punteros siguiente.
 
-Errores de casting → se corrigió convirtiendo los datos al tipo adecuado.
+Métodos Recursivos Implementados
+Ejemplos incluidos:
+contarElementosPilaRecursivo()
+vaciarColaRecursivo()
+buscarEnPilaRecursivo()
+(implementados dentro de Pila/Cola o usando funciones auxiliares)
 
-Recursión infinita → se evitó agregando el caso base actual == null.
 
+Ejemplos de Uso
+Todos los ejemplos están incluidos en App.java:
+Registrar y deshacer cambios
+Agregar y completar tareas
+Agregar turnos y atenderlos
+Agregar solicitudes y procesarlas
+
+
+
+Conclusión
+El TP integra Pilas, Colas, Recursividad y Listas Enlazadas dentro de un mismo sistema educativo.
+Cada funcionalidad fue implementada usando la estructura adecuada:
+Pila: acciones recientes o tareas
+Cola: procesos secuenciales en orden de llegada
